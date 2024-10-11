@@ -2,10 +2,12 @@
 
 one:
   title: MyString
+  url: https://example.com
   description: MyString
   user: one
 
 two:
   title: MyString
   description: MyString
+  url: https://example.com
   user: two
