@@ -1,8 +1,11 @@
 <header class="bg-gray-800 text-white p-4">
   <div class="container mx-auto flex justify-between items-center">
     <h1 class="text-2xl font-bold"><%= link_to "Launchy", root_path %></h1>
-    <nav>
+    <nav class="flex items-center gap-4">
       <% if Current.user %>
+        <% unless request.path.include?('todo') %>
+          <%= link_to "Tasks", todo_items_path, class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
+        <% end %>
         <%= button_to "Log out", session_path, method: :delete, class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" %>
       <% else %>
         <%= link_to "Log in", new_session_path, class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>

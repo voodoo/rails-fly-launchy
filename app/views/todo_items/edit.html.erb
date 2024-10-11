@@ -1,0 +1,9 @@
+<div class="container mx-auto mt-8">
+  <h1 class="text-3xl font-bold mb-4">Edit Quantum Task</h1>
+
+  <%= render 'form', todo_item: @todo_item %>
+
+  <div class="mt-4">
+    <%= link_to 'Back', todo_items_path, class: "inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" %>
+  </div>
+</div>
