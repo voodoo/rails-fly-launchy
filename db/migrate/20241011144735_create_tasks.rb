@@ -1,6 +1,6 @@
-class CreateTodoItems < ActiveRecord::Migration[7.0]
+class CreateTasks < ActiveRecord::Migration[7.0]
   def change
-    create_table :todo_items do |t|
+    create_table :tasks do |t|
       t.string :title, null: false
       t.text :description
       t.integer :state, default: 0
@@ -9,7 +9,7 @@ class CreateTodoItems < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_index :todo_items, :state
-    add_index :todo_items, :due_date
+    add_index :tasks, :state
+    add_index :tasks, :due_date
   end
 end

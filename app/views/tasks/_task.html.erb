@@ -1,0 +1,8 @@
+<%= link_to task_path(task), class: "block bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 hover:bg-gray-50 transition duration-150 ease-in-out", data: { controller: "todo-item" } do %>
+  <h2 class="text-xl font-bold mb-2"><%= task.title %></h2>
+  <p class="text-gray-700 text-base mb-2"><%= task.description %></p>
+  <p class="text-sm text-gray-600 mb-2">Due: <%= task.due_date&.strftime('%B %d, %Y') || 'No due date' %></p>
+  <div class="flex items-center justify-between">
+    <%= render 'state', task: task %>
+  </div>
+<% end %>

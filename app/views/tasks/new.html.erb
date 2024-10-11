@@ -1,12 +1,12 @@
 <div class="container mx-auto mt-8">
-  <h1 class="text-3xl font-bold mb-4">Create New Quantum Task</h1>
+  <h1 class="text-3xl font-bold mb-4">Task</h1>
 
-  <%= form_with(model: @todo_item, local: true, class: "max-w-md") do |form| %>
-    <% if @todo_item.errors.any? %>
+  <%= form_with(model: @task, local: true, class: "max-w-md") do |form| %>
+    <% if @task.errors.any? %>
       <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-        <h2 class="font-bold mb-2"><%= pluralize(@todo_item.errors.count, "error") %> prohibited this task from being saved:</h2>
+        <h2 class="font-bold mb-2"><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
         <ul class="list-disc list-inside">
-          <% @todo_item.errors.full_messages.each do |message| %>
+          <% @task.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>
@@ -25,7 +25,7 @@
 
     <div class="mb-4">
       <%= form.label :state, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.select :state, TodoItem.states.keys.map { |s| [s.titleize, s] }, {}, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <%= form.select :state, Task.states.keys.map { |s| [s.titleize, s] }, {}, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
 
     <div class="mb-6">
@@ -34,8 +34,8 @@
     </div>
 
     <div class="flex items-center justify-between">
-      <%= form.submit "Create Quantum Task", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
-      <%= link_to 'Back', todo_items_path, class: "inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" %>
+      <%= form.submit "Create Task", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      <%= link_to 'Back', tasks_path, class: "inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" %>
     </div>
   <% end %>
 </div>
