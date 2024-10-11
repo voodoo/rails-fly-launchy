@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_11_144735) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_11_174300) do
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -18,6 +18,17 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_11_144735) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "stories", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.string "url_protocol", default: "https://"
+    t.text "description"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_stories_on_user_id"
   end
 
   create_table "todo_items", force: :cascade do |t|
@@ -42,5 +53,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_11_144735) do
   end
 
   add_foreign_key "sessions", "users"
+  add_foreign_key "stories", "users"
   add_foreign_key "todo_items", "users"
 end

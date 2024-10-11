@@ -6,7 +6,7 @@ class TodoItem < ApplicationRecord
 
   enum state: { pending: 0, in_progress: 1, completed: 2 }
 
-  scope :active, -> { where.not(state: :collapsed) }
+  scope :active, -> { where.not(state: :completed) }
   scope :due_soon, -> { where('due_date <= ?', 3.days.from_now) }
 
   def collapse

@@ -1,8 +1,13 @@
 class TodoItemsController < ApplicationController
-  before_action :set_todo_item, only: [:show, :edit, :update, :destroy, :collapse, :uncollapse]
+  before_action :set_todo_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    @todo_items = Current.user.todo_items#.active.order(due_date: :asc)
+    @todo_items = Current.user.todo_items.active.order(state: :asc)
+  end
+
+  def all
+    @todo_items = Current.user.todo_items.order(due_date: :asc)
+    render :index
   end
 
   def show

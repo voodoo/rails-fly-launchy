@@ -7,6 +7,9 @@ module Authentication
   end
 
   class_methods do
+    # This method allows controllers to specify actions that don't require authentication
+    # It skips the :require_authentication before_action for the specified options
+    # Usage: allow_unauthenticated_access only: [:index, :show]
     def allow_unauthenticated_access(**options)
       skip_before_action :require_authentication, **options
     end

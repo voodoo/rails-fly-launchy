@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root "home#index"
+  resources :stories
+
+  root "stories#index"
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -16,6 +18,9 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :todo_items do
+    collection do
+      get :all
+    end    
     member do
       patch :collapse
       patch :uncollapse

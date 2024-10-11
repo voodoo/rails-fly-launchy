@@ -1,0 +1,30 @@
+
+<div id="<%= dom_id @story %>" class="bg-white border border-gray-200 mx-auto shadow-sm rounded-lg p-4">
+  <div class="flex justify-between">
+    <p class="my-5">
+      <strong class="block font-dark mb-1">Title:</strong>
+    <%= @story.title %>
+  </p>
+
+
+  <p class="my-5 flex-1 px-5">
+    <strong class="block font-dark mb-1">Url:</strong>
+    <%= @story.url_protocol %><%= @story.url %>
+  </p>
+</div>
+  <p class="my-5">
+    <strong class="block font-dark mb-1">Description:</strong>
+    <%= @story.description %>
+  </p>
+
+  <p class="my-5">
+    by <%= @story.user.email_address %> <%= time_ago_in_words(@story.created_at) %> ago
+  </p>
+
+
+
+    <%= link_to "Edit this story", edit_story_path(@story), class: " mt-2 rounded-lg py-3 px-5 bg-blue-100 inline-block font-medium" %>
+    <%= link_to "Back to stories", stories_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to "Destroy this story", @story, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-100 font-medium", data: { turbo_confirm: "Are you sure you want to delete this story?" } %>
+    </div>
