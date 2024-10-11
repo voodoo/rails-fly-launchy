@@ -3,13 +3,7 @@
   <p class="text-gray-700 text-base mb-2"><%= todo_item.description %></p>
   <p class="text-sm text-gray-600 mb-2">Due: <%= todo_item.due_date&.strftime('%B %d, %Y') || 'No due date' %></p>
   <div class="flex items-center justify-between">
-    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-      <%= todo_item.state.titleize %>
-    </span>
-    <div>
-      <%#= link_to 'View', todo_item, class: 'text-blue-500 hover:text-blue-700' %>
-      <%#= link_to 'Edit', edit_todo_item_path(todo_item), class: 'text-blue-500 hover:text-blue-700 ml-2' %>
-      <%#= link_to 'Collapse', collapse_todo_item_path(todo_item), method: :patch, class: 'text-red-500 hover:text-red-700 ml-2', data: { turbo_method: :patch } %>
-    </div>
+    <%= render 'state', todo_item: todo_item %>
+
   </div>
 <% end %>
