@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   get "about", to: "home#index"
   get "profile", to: "home#profile"
-  resources :stories
+  resources :stories do
+    member do
+      post :upvote
+    end
+  end
 
   root "stories#index"
   resource :session

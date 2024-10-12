@@ -13,25 +13,8 @@
   </div>
 
   <div id="stories" class="w-full mt-8">
-    <table class="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
-      <thead class="bg-gray-50">
-        <tr>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Url</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-gray-200">
         <% @stories.each do |story| %>
-          <tr>
-            <td class="px-6 py-4 whitespace-nowrap"><%= story.title %></td>
-            <td class="px-6 py-4"><%= story.url_protocol %>://<%= truncate(story.url, length: 100) %></td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <%= link_to "Show this story", story, class: "text-indigo-600 hover:text-indigo-900" %>
-            </td>
-          </tr>
+          <%= render "story", story: story %>
         <% end %>
-      </tbody>
-    </table>
   </div>
 </div>

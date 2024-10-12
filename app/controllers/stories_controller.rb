@@ -2,7 +2,7 @@ class StoriesController < ApplicationController
   allow_unauthenticated_access only: [:index, :show]
   before_action :resume_session, only: [:index, :show]
 
-  before_action :set_story, only: %i[ show edit update destroy ]
+  before_action :set_story, only: %i[ show edit update destroy upvote ]
 
   # GET /stories or /stories.json
   def index
@@ -58,6 +58,13 @@ class StoriesController < ApplicationController
       format.html { redirect_to stories_path, status: :see_other, notice: "Story was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+  # POST /stories/1/upvote
+  def upvote
+    @story = Story.find(params[:id])
+    vote = @story.votes.new(user: Current.user)
+    vote.save
+    redirect_to @story, notice: "You've successfully upvoted this story." 
   end
 
   private

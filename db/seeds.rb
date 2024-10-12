@@ -1,17 +1,11 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
-user =User.find_or_create_by!(email_address: "admin@example.com") do |user|
-  user.password = "password"
-  user.password_confirmation = "password"
+user_emails = ["user@domain.com", "user1@domain.com", "user2@domain.com", "user3@domain.com", "user4@domain.com"]
+user_emails.each do |email|
+  user = User.find_or_create_by!(email_address: email) do |user|
+    user.password = "password"
+    user.password_confirmation = "password"
+  end
 end
+
 # Create 30 ancient history related tasks for the user
 stories = [
   { title: "Research Ancient Egypt", description: "Study the pyramids and pharaohs of Ancient Egypt" },
@@ -55,7 +49,7 @@ stories.each do |task_data|
   random_url = "#{random_domain}/#{stories.sample[:title].parameterize}"
   random_title = stories.sample[:title]
   random_description = stories.sample[:description]
-  user.stories.create!(
+  User.all.sample.stories.create!(
     title: random_title,
     url_protocol: random_protocol,
     description: random_description,
@@ -63,4 +57,20 @@ stories.each do |task_data|
     created_at: Date.today - rand(1..30).days,
   )
 end
+root_user = Current.root_user
+root_user.tasks.create!(
+  title: "Todo to todone",
+  description: "Do the done thine",
+)
 
+root_user.tasks.create!(
+  title: "Make sure this Root user is ok",
+  description: "Does not screw up all the things",
+  state: 1,
+)
+
+root_user.tasks.create!(
+  title: "This task is not done",
+  description: "Do the thing",
+  state: 2,
+)

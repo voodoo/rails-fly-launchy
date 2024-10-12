@@ -11,7 +11,7 @@
 
   <%= form_with url: session_url, class: "contents" do |form| %>
     <div class="my-5">
-      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address], class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] || "user@domain.com", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
 
     <div class="my-5">
@@ -28,4 +28,8 @@
       </div>
     </div>
   <% end %>
+  <div class="mt-4 text-sm text-gray-500">
+    Here are the users you can sign in with: password is "password".<br/>
+    <%= ["user@domain.com", "user1@domain.com", "user2@domain.com", "user3@domain.com", "user4@domain.com"].join(", ") %>
+  </div>
 </div>

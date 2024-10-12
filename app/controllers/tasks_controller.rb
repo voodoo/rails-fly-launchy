@@ -1,15 +1,16 @@
 class TasksController < ApplicationController
 
-  #allow_unauthenticated_access only: [:index, :show]
-  #before_action :resume_session, only: [:index, :show]  
+  allow_unauthenticated_access only: [:index, :show, :all]
+  before_action :resume_session, only: [:index, :show, :all]  
+  
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Current.user.tasks.active.order(state: :asc)
+    @tasks = Current.user ? Current.user.tasks.active.order(state: :asc) : Current.root_user.tasks.active.order(state: :asc)
   end
 
   def all
-    @tasks = Current.user.tasks.order(due_date: :asc)
+    @tasks = Current.user ? Current.user.tasks.order(due_date: :asc) : Current.root_user.tasks.order(due_date: :asc)
     render :index
   end
 

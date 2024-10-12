@@ -1,0 +1,13 @@
+<div id="story_<%= story.id %>" class="bg-white rounded-lg shadow-md p-6 mb-4 flex">
+  <div class="flex flex-col items-center mr-10 mt-4">
+    <span class="text-2xl font-bold text-gray-700 border border-gray-200 rounded-full p-2"><%= story.votes_count %></span>
+  </div>
+  <div class="flex-grow">
+    <h2 class="text-xl font-semibold mb-2"><%= story.title %></h2>
+    <p class="text-gray-600 mb-4"><%= truncate(story.url, length: 100) %></p>
+    <p class="text-gray-600 mb-4">by <%= story.user.email_address %> <%= time_ago_in_words(story.created_at) %> ago</p>
+    <div class="flex items-center justify-between">
+      <%= link_to "Read more", story_path(story), class: "text-blue-500 hover:text-blue-700" %>
+    </div> 
+  </div>
+</div>

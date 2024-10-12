@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_11_174300) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_11_174301) do
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -28,6 +28,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_11_174300) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "votes_count", default: 0, null: false
     t.index ["user_id"], name: "index_stories_on_user_id"
   end
 
@@ -52,7 +53,19 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_11_174300) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.integer "story_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["story_id"], name: "index_votes_on_story_id"
+    t.index ["user_id", "story_id"], name: "index_votes_on_user_id_and_story_id", unique: true
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
   add_foreign_key "sessions", "users"
   add_foreign_key "stories", "users"
   add_foreign_key "tasks", "users"
+  add_foreign_key "votes", "stories"
+  add_foreign_key "votes", "users"
 end
