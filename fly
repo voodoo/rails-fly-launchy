@@ -1,0 +1,3 @@
+ActiveRecord::ProtectedEnvironmentError: You are attempting to run a destructive action against your 'production' database. (ActiveRecord::ProtectedEnvironmentError)
+If you are sure you want to continue, run the same command with the environment variable:
+DISABLE_DATABASE_ENVIRONMENT_CHECK=1

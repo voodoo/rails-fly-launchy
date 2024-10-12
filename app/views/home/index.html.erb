@@ -1,5 +1,13 @@
-<div class="container mx-auto mt-8 flex justify-between">
-  <div class="w-1/2 pr-4">
+<div class="container mx-auto mt-8">
+  <div class="w-full">
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">    <h1 class="font-bold text-4xl">Welcome to Ancient</h1>
+    This app is a simple task and story manager.
+    <p>
+    Created by Paul Vudmaska
+    </div>
+  </div>
+
+  <div class="w-full">
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <h2 class="text-2xl font-bold mb-4">Recent Tasks</h2>
       <% if Current.user.tasks.active.any? %>
@@ -18,7 +26,7 @@
     </div>
   </div>
 
-  <div class="w-1/2 pl-4">
+  <div class="w-full">
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <h2 class="text-2xl font-bold mb-4">Recent Stories</h2>
       <% if Current.user.stories.any? %>

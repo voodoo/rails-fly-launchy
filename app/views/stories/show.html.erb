@@ -1,15 +1,19 @@
 
 <div id="<%= dom_id @story %>" class="bg-white border border-gray-200 mx-auto shadow-sm rounded-lg p-4">
   <div class="flex justify-between">
+    <p class="m-5 ml-0">
+      <%= link_to "▲", "#", target: :blank %>
+    </p>
     <p class="my-5">
       <strong class="block font-dark mb-1">Title:</strong>
-    <%= @story.title %>
-  </p>
+      <%= @story.title %>
+    </p>
 
 
   <p class="my-5 flex-1 px-5">
     <strong class="block font-dark mb-1">Url:</strong>
-    <%= @story.url_protocol %>://<%= @story.url %>
+    <% link = @story.url_protocol + "://" + @story.url %>
+    <%= link_to link, link, target: :blank %>
   </p>
 </div>
   <p class="my-5">

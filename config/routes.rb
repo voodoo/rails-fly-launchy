@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "about", to: "home#index"
+  get "profile", to: "home#profile"
   resources :stories
 
   root "stories#index"

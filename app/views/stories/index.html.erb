@@ -6,7 +6,7 @@
   <% content_for :title, "Stories" %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Storie</h1>
+    <h1 class="font-bold text-4xl">Stories</h1>
     <% if Current.user %>
       <%= link_to "New story", new_story_path, class: "rounded-lg py-3 px-5 bg-green-600 text-white block font-medium" %>
     <% end %>
@@ -16,7 +16,6 @@
     <table class="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
       <thead class="bg-gray-50">
         <tr>
-         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vote</th>
           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Url</th>
           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
@@ -25,9 +24,6 @@
       <tbody class="divide-y divide-gray-200">
         <% @stories.each do |story| %>
           <tr>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <%= link_to "▲", "#", class: "text-gray-500 hover:text-green-500 transition-colors duration-200" %>
-            </td>
             <td class="px-6 py-4 whitespace-nowrap"><%= story.title %></td>
             <td class="px-6 py-4"><%= story.url_protocol %>://<%= truncate(story.url, length: 100) %></td>
             <td class="px-6 py-4 whitespace-nowrap">
