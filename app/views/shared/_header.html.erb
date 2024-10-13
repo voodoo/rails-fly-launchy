@@ -6,7 +6,7 @@
       <%= link_to_unless_current "Stories", stories_path, class: " text-white hover:text-gray-300 font-bold py-2 px-4 " %>
       <%= link_to_unless_current "Tasks", tasks_path, class: "text-white hover:text-gray-300 font-bold py-2 px-4 " %>
       <% if Current.user %>
-        <%= link_to_unless_current "@", profile_path, class: "text-white hover:text-gray-300 font-bold py-2 px-4 " %>
+        <%= link_to_unless_current "@#{Current.user.email_address.gsub('@domain.com', '')}", profile_path, class: "text-white hover:text-gray-300 font-bold py-2 px-4 " %>
       <% else %>
         <% unless request.path == new_session_path    %>
           <%= link_to "Sign in", new_session_path, class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>

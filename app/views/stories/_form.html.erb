@@ -17,9 +17,14 @@
   </div>
   <div class="my-5">
     <%= form.label :url %>
-    <div class="flex">
-      <%= form.select :url_protocol, options_for_select([['https://', 'https'], ['http://', 'http']]), class: "rounded w-1/4"  %>
-      <%= form.text_field :url, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <div class="flex mt-2">
+      <%= form.select :url_protocol, 
+                      options_for_select([['https://', 'https'], ['http://', 'http']]), 
+                      {}, 
+                      class: "w-40 shadow rounded-l-md border border-gray-400 outline-none px-3 py-4 bg-white" %>
+      <%= form.text_field :url, 
+                          class: "grow shadow rounded-r-md border border-gray-400 outline-none px-3 py-4",
+                          style: "margin-left: -1px;" %>
     </div>
   </div>
 

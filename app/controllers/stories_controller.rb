@@ -6,7 +6,7 @@ class StoriesController < ApplicationController
 
   # GET /stories or /stories.json
   def index
-    @stories = Story.all
+    @stories = Story.order(votes_count: :desc)
   end
 
   # GET /stories/1 or /stories/1.json
