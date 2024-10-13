@@ -1,12 +1,12 @@
-<div class="flex flex-col items-center  m-5 p-2 border border-gray-200 rounded-full" id="story_<%= story.id %>">
+<div class="flex flex-col items-center justify-around  m-5 p-2 border border-gray-200 rounded-full" id="story_<%= story.id %>">
 
   <% if Current.user && Current.user.votes.find_by(story: story).nil? %>
-    <%= button_to upvote_story_path(story), method: :post, class: "bg-gray-100 rounded-full p-3 flex flex-col items-center justify-center w-16 h-16 hover:bg-gray-200 transition-colors duration-200", data: { turbo_frame: "story_#{story.id}" } do %>
+    <%= button_to upvote_story_path(story), method: :post, class: "bg-gray-100 rounded-full p-1 flex flex-col items-center justify-center hover:bg-gray-200 transition-colors duration-200", data: { turbo_frame: "story_#{story.id}" } do %>
       <%= image_tag "/images/upvote.svg", class: "w-6 h-6 mb-1" %>
     <% end %>
   <% end %>
 
-  <span class="text-2xl font-bold text-gray-700"><%= story.votes_count %></span>
+  <span class="text-2xl font-bold text-gray-700"><%= story.votes_count  %></span>
 
 <span class="text-xs text-gray-500">votes</span>
 </div>

@@ -1,13 +1,20 @@
 Rails.application.routes.draw do
+  root "stories#index"
+
   get "about", to: "profile#index"
   get "profile", to: "profile#profile"
+  
   resources :stories do
     member do
       post :upvote
     end
   end
 
-  root "stories#index"
+  resources :tasks do
+    collection do
+      get :all
+    end    
+  end
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -23,13 +30,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  resources :tasks do
-    collection do
-      get :all
-    end    
-    member do
-      patch :collapse
-      patch :uncollapse
-    end
-  end
 end

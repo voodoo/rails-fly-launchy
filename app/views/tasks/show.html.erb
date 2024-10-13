@@ -1,7 +1,9 @@
-<div class="container mx-auto mt-8">
-  <h1 class="text-3xl font-bold mb-4"><%= @task.title %></h1>
 
-  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+
+
+  <div class=" container bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  
+   <h1 class="text-3xl font-bold mb-4"><%= @task.title %></h1>
     <div class="mb-4">
       <h2 class="text-xl font-semibold mb-2">Description</h2>
       <p class="text-gray-700"><%= @task.description %></p>
@@ -14,6 +16,8 @@
       </p>
     </div>
 
+
+
     <div class="mb-4">
       <h2 class="text-xl font-semibold mb-2">Due Date</h2>
       <p class="text-gray-700"><%= @task.due_date&.strftime('%B %d, %Y') || 'Not set' %></p>
@@ -25,4 +29,4 @@
       <%= button_to 'Delete', task_path(@task), method: :delete, data: { turbo_confirm: 'Are you sure you want to delete this quantum task?' }, class: 'bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
     </div>
   </div>
-</div>
+
