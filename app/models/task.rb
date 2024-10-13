@@ -3,8 +3,7 @@ class Task < ApplicationRecord
 
   validates :title, presence: true
   validates :state, presence: true
-
-  enum state: { pending: 0, in_progress: 1, completed: 2 }
+  enum :state, {:pending=>0, :in_progress=>1, :completed=>2}
 
   scope :active, -> { where.not(state: :completed) }
   scope :due_soon, -> { where('due_date <= ?', 3.days.from_now) }

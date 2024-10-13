@@ -61,12 +61,14 @@ root_user = Current.root_user
 root_user.tasks.create!(
   title: "Todo to todone",
   description: "Do the done thine",
+  due_date: Date.today + 1.week
 )
 
 root_user.tasks.create!(
   title: "Make sure this Root user is ok",
   description: "Does not screw up all the things",
   state: 1,
+  due_date: Date.today + 3.week
 )
 
 root_user.tasks.create!(

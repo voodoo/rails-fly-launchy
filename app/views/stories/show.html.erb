@@ -4,16 +4,12 @@
   </div>
 <% end %>
 
-<div id="<%= dom_id @story %>" class="bg-white border border-gray-200 mx-auto shadow-sm rounded-lg p-4">
+<div class="bg-white border border-gray-200 mx-auto shadow-sm rounded-lg p-4">
   <div class="flex justify-between">
-    <div class="flex flex-col items-center  m-5 ml-0 border border-gray-200 rounded-lg p-2">
-      <% if Current.user && Current.user.votes.find_by(story: @story).nil? %>
-        <%= button_to upvote_story_path(@story), method: :post, data: { turbo: false }, class: "flex flex-col items-center" do %>
-          <%= image_tag "/images/upvote.svg", alt: "Upvote", class: "w-6 h-6 text-gray-500 hover:text-blue-500 transition-colors duration-200" %>
-        <% end %>        
-      <% end %>
-      <span class="text-sm font-semibold mt-1"><%= @story.votes_count %></span>
-    </div>
+      
+      
+   <%= render "vote", story: @story %>
+  
     <p class="my-5">
       <strong class="block font-dark mb-1">Title:</strong>
       <%= @story.title %>
@@ -26,19 +22,19 @@
     <%= link_to link, link, target: :blank %>
   </p>
 </div>
-  <p class="my-5">
+  <p class="my-5 flex-1 px-5">
     <strong class="block font-dark mb-1">Description:</strong>
     <%= @story.description %>
   </p>
 
-  <p class="my-5">
+  <p class="my-5 flex-1 px-5">
     by <%= @story.user.email_address %> <%= time_ago_in_words(@story.created_at) %> ago
   </p>
 
+  <%= link_to "Back to stories", stories_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 
-  <% if Current.user%>
+  <% if Current.user && Current.user.id == @story.user_id %>
     <%= link_to "Edit this story", edit_story_path(@story), class: " mt-2 rounded-lg py-3 px-5 bg-blue-100 inline-block font-medium" %>
-    <%= link_to "Back to stories", stories_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to "Destroy this story", @story, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-100 font-medium", data: { turbo_confirm: "Are you sure you want to delete this story?" } %>
     </div>

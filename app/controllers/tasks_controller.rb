@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
-  allow_unauthenticated_access only: [:index, :show, :all]
-  before_action :resume_session, only: [:index, :show, :all]  
+  allow_unauthenticated_access only: [:index, :all]
+  before_action :resume_session, only: [:index,:all]  
   
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 

@@ -64,7 +64,15 @@ class StoriesController < ApplicationController
     @story = Story.find(params[:id])
     vote = @story.votes.new(user: Current.user)
     vote.save
-    redirect_to @story, notice: "You've successfully upvoted this story." 
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace("story_#{@story.id}", partial: 'stories/vote', locals: { story: @story }),
+          #turbo_stream.prepend("flash", partial: 'layouts/flash', locals: { message: "You've successfully upvoted this story.", type: 'notice' })
+        ]
+      end
+      format.html { redirect_to @story, notice: "You've successfully upvoted this story." }
+    end
   end
 
   private

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get "about", to: "home#index"
-  get "profile", to: "home#profile"
+  get "about", to: "profile#index"
+  get "profile", to: "profile#profile"
   resources :stories do
     member do
       post :upvote
