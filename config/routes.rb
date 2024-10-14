@@ -4,6 +4,13 @@ Rails.application.routes.draw do
   get "about", to: "profile#index"
   get "profile", to: "profile#profile"
   
+  resources :todos do
+    member do
+      post :complete
+      patch :toggle
+    end
+  end
+
   resources :stories do
     member do
       post :upvote

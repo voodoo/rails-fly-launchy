@@ -1,0 +1,13 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold mb-6">Todos</h1>
+
+  <%= turbo_frame_tag "todo_form" do %>
+    <%= render "form", todo: @todo %>
+  <% end %>
+
+  <%= turbo_frame_tag "todos" do %>
+    <%= render @todos %>
+  <% end %>
+</div>
+
+<%= turbo_stream_from "todos" %>

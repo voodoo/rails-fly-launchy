@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_11_174301) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_13_232017) do
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -43,6 +43,14 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_11_174301) do
     t.index ["due_date"], name: "index_tasks_on_due_date"
     t.index ["state"], name: "index_tasks_on_state"
     t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.boolean "completed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

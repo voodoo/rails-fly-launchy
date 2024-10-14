@@ -1,0 +1,7 @@
+<div class="container mx-auto px-4">
+  <h1 class="text-3xl font-bold mb-6">New Todo</h1>
+
+  <%= render 'form', todo: @todo %>
+
+  <%= link_to 'Back', todos_path, class: 'bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mt-4 inline-block' %>
+</div>
