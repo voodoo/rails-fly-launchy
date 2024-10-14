@@ -72,3 +72,22 @@ root_user.tasks.create!(
   description: "Do the thing",
   state: 2,
 )
+
+# Todos
+
+root_user.todos.create!(
+  title: "Make the root user a real user",
+  completed: true
+)
+root_user.todos.create!(
+  title: "Don't lock this down - delete me!",
+  completed: false
+)
+root_user.todos.create!(
+  title: "Todo and todone",
+  completed: true
+)
+root_user.todos.create!(
+  title: "Make sure this runs",
+  completed: true
+)

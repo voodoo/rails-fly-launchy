@@ -2,11 +2,18 @@
   <div class="container mx-auto flex justify-between items-center">
     <h1 class="text-2xl font-bold"><%= link_to "Ancient", root_path %></h1>
     <nav class="flex items-center gap-4">
-      <%= link_to_unless_current "About", about_path, class: "text-white hover:text-gray-300 font-bold py-2 px-4" %>
-      <%= link_to_unless_current "Stories", stories_path, class: " text-white hover:text-gray-300 font-bold py-2 px-4 " %>
+       <%unless request.path == stories_path || request.path == root_path %>
+        <%= link_to_unless_current "Stories", stories_path, class: " text-white hover:text-gray-300 font-bold py-2 px-4 " %>
+      <% end %>
+      <%if request.path == tasks_path%>
       <%= link_to_unless_current "Tasks", tasks_path, class: "text-white hover:text-gray-300 font-bold py-2 px-4 " %>
+      <%else%>
+      <%= link_to_unless_current "Tasks", tasks_path, class: "text-white hover:text-gray-300 font-bold py-2 px-4 " %>
+      <%end%>
       <% if Current.user %>
-        <%= link_to_unless_current "@#{Current.user.email_address.gsub('@domain.com', '')}", profile_path, class: "text-white hover:text-gray-300 font-bold py-2 px-4 " %>
+         <% unless request.path == profile_path %>
+           <%= link_to_unless_current "@#{Current.user.email_address.gsub('@domain.com', '')}", profile_path, class: "text-white hover:text-gray-300 font-bold py-2 px-4 " %>
+      <% end %>
       <% else %>
         <% unless request.path == new_session_path    %>
           <%= link_to "Sign in", new_session_path, class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
@@ -14,4 +21,8 @@
       <% end %>
     </nav>
   </div>
+</header>
+<header class="container mx-auto flex justify-end rounded-b-lg p-2 bg-gradient-to-b from-gray-900 to-gray-500">
+  <%= link_to "About", about_path, class: "text-white hover:text-gray-200 font-bold py-2 px-4" %>
+  <%= link_to "Todos", todos_path, class: "text-white hover:text-gray-200 font-bold py-2 px-4" %>
 </header>

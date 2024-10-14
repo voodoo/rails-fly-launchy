@@ -3,7 +3,7 @@
     <%= form_with(model: todo, class: "flex items-center w-full", data: { todo_target: "form", action: "submit->todo#update" }) do |form| %>
       <div class="flex items-center flex-grow">
         <%= form.check_box :completed, class: "mr-2 h-5 w-5 text-blue-600", data: { todo_target: "checkbox", action: "change->todo#toggleComplete" } %>
-        <span class="hover:cursor-pointer <%= todo.completed ? 'line-through text-gray-500' : '' %> flex-grow" data-todo-target="title" data-action="dblclick->todo#edit">
+        <span class="hover:cursor-pointer <%= todo.completed ? 'line-through text-gray-500' : '' %> flex-grow" data-todo-target="title" data-action="click->todo#edit">
           <%= todo.title %>
         </span>
         <%= form.text_field :title, class: "hidden flex-grow p-1 border rounded", data: { todo_target: "input" } %>
@@ -11,7 +11,7 @@
       </div>
     <% end %>
     <div>
-      <%= button_to "Delete", todo_path(todo), method: :delete, class: "rounded px-2 py-1 bg-red-50 hover:bg-red-200 text-blue-800 hover:text-blue-900" %>
+      <%= button_to "Delete", todo_path(todo), method: :delete, class: "rounded px-2 py-1 bg-gray-100 hover:bg-gray-200 text-red-600 hover:text-red-900" %>
     </div>
   </div>
 <% end %>

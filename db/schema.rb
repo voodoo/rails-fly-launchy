@@ -49,8 +49,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_13_232017) do
     t.string "title"
     t.text "description"
     t.boolean "completed"
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_todos_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,6 +76,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_13_232017) do
   add_foreign_key "sessions", "users"
   add_foreign_key "stories", "users"
   add_foreign_key "tasks", "users"
+  add_foreign_key "todos", "users"
   add_foreign_key "votes", "stories"
   add_foreign_key "votes", "users"
 end

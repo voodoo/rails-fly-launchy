@@ -6,11 +6,13 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
+    # This is accounting for using root account items if not logged in
     @tasks = Current.user ? Current.user.tasks.active.order(state: :asc) : Current.root_user.tasks.active.order(state: :asc)
   end
-
+  
   def all
-    @tasks = Current.user ? Current.user.tasks.order(due_date: :asc) : Current.root_user.tasks.order(due_date: :asc)
+    # This is accounting for using root account items if not logged in
+    @tasks = Current.user ? Current.user.tasks.order(:state) : Current.root_user.tasks.order(:state)
     render :index
   end
 

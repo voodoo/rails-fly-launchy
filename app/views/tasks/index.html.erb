@@ -1,7 +1,9 @@
 <div class="container mx-auto mt-8">
   <div class="flex justify-between items-center mb-4">
     <h1 class="text-3xl font-bold"><%=link_to "Tasks", tasks_path %></h1>
-    <%= link_to "All", all_tasks_path, class: " py-3 px-5  text-blue-800 font-medium" unless params[:action] == "all" %>
+    <% if @tasks.active.any? && action_name != "all" %>
+      <%= link_to "All", all_tasks_path, class: " py-3 px-5  text-blue-800 font-medium"  %>
+    <% end %>
     <% if Current.user %>
       <%= link_to ' New Task ', new_task_path, class: 'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded' %>
     <% end %>

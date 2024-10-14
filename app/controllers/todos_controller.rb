@@ -1,20 +1,23 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: [:show, :edit, :update, :destroy, :toggle]
+  
+  allow_unauthenticated_access
+  before_action :resume_session
 
   def index
-    @todos = Todo.all
-    @todo = Todo.new
-  end
+    @todos = Current.root_user.todos.all
+    @todo = Current.root_user.todos.new
+  end  
 
   def show
   end
 
   def new
-    @todo = Todo.new
+    @todo = Current.root_user.todos.new
   end
 
   def create
-    @todo = Todo.new(todo_params)
+    @todo = Current.root_user.todos.new(todo_params)
     if @todo.save
       respond_to do |format|
         format.turbo_stream
@@ -59,7 +62,7 @@ class TodosController < ApplicationController
   private
 
   def set_todo
-    @todo = Todo.find(params[:id])
+    @todo = Current.root_user.todos.find(params[:id])
   end
 
   def todo_params

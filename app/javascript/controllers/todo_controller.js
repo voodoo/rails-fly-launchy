@@ -8,7 +8,7 @@ export default class extends Controller {
   }
 
   edit(event) {
-    console.log("edit");
+
     event.preventDefault();
     this.titleTarget.classList.add("hidden")
     this.inputTarget.classList.remove("hidden")
@@ -24,7 +24,6 @@ export default class extends Controller {
   }
 
   toggleComplete(event) {
-   // this.checkboxTarget.disabled = true
     this.formTarget.submit()
   }
 }
