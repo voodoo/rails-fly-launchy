@@ -1,5 +1,5 @@
 <%= turbo_frame_tag dom_id(todo) do %>
-  <div class="flex items-center bg-white rounded-md shadow-md justify-between border-b p-4 mb-1" data-controller="todo">
+  <div class="flex font-semibold items-center bg-white rounded-md shadow-md justify-between border-b p-4 mb-1" data-controller="todo">
     <%= form_with(model: todo, class: "flex items-center w-full", data: { todo_target: "form", action: "submit->todo#update" }) do |form| %>
       <div class="flex items-center flex-grow">
         <%= form.check_box :completed, class: "mr-2 h-5 w-5 text-blue-600", data: { todo_target: "checkbox", action: "change->todo#toggleComplete" } %>
@@ -11,7 +11,7 @@
       </div>
     <% end %>
     <div>
-      <%= button_to "Delete", todo_path(todo), method: :delete, class: "rounded px-2 py-1 bg-red-100 text-blue-800 hover:text-blue-900" %>
+      <%= button_to "Delete", todo_path(todo), method: :delete, class: "rounded px-2 py-1 bg-red-50 hover:bg-red-200 text-blue-800 hover:text-blue-900" %>
     </div>
   </div>
 <% end %>
