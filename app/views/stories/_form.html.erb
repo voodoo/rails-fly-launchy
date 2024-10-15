@@ -19,8 +19,7 @@
     <%= form.label :url %>
     <div class="flex mt-2">
       <%= form.select :url_protocol, 
-                      options_for_select([['https://', 'https'], ['http://', 'http']]), 
-                      {}, 
+                      options_for_select(['https://','http://'], story.url_protocol), 
                       class: "w-40 shadow rounded-l-md border border-gray-400 outline-none px-3 py-4 bg-white" %>
       <%= form.text_field :url, 
                           class: "grow shadow rounded-r-md border border-gray-400 outline-none px-3 py-4",

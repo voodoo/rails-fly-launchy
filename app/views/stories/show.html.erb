@@ -7,7 +7,7 @@
 <div class="bg-white border border-gray-200 mx-auto shadow-sm rounded-lg p-4">
   <div class="flex justify-between">
     <%= render "vote", story: @story %>
-    <% link = @story.url_protocol + @story.url %>
+    <% link = @story.url_protocol  + @story.url %>
     <p class="my-5 mx-2">
       <strong class="block font-dark mb-1">Title:</strong>
       <%= link_to @story.title, link, target: :blank %>
