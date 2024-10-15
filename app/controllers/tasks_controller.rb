@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   allow_unauthenticated_access only: [:index, :all]
   before_action :resume_session, only: [:index,:all]  
   
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :update_state]
 
   def index
     # This is accounting for using root account items if not logged in
@@ -57,6 +57,12 @@ class TasksController < ApplicationController
   def uncollapse
     @task.uncollapse
     redirect_to tasks_url, notice: 'Task uncollapsed successfully!'
+  end
+
+
+  def update_state
+    @task.update(state: params[:state])
+    render json: { status: 'success' }, status: :ok 
   end
 
   private

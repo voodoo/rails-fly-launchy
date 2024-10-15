@@ -1,0 +1,14 @@
+<div data-controller="ribbon" data-ribbon-current-state-value="<%= @task.state %>" class="inline-flex rounded-md shadow-sm">
+   <% Task.states.each do |state, _| %>
+    <%= button_to state.titleize,
+                  update_state_task_path(@task, state: state),
+                  method: :patch,
+                  class: "px-4 py-2 text-sm font-medium border  #{state == Task.states.keys.first ? 'rounded-s-lg' : ''} #{state == Task.states.keys.last ? 'rounded-e-lg' : ''}  focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700",
+                  data: {
+                    turbo: false,
+                    ribbon_target: "button",
+                    action: "ribbon#updateState",
+                    state: state
+                  } %>
+  <% end %>
+</div>
