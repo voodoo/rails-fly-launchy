@@ -1,0 +1,18 @@
+<div class="w-full">
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <h2 class="text-2xl font-bold mb-4">Recent Tasks</h2>
+      <% if @user.tasks.active.any? %>
+        <ul class="list-disc pl-5">
+          <% @user.tasks.active.order(created_at: :desc).limit(5).each do |task| %>
+            <li class="mb-2">
+              <%= link_to task.title, task_path(task), class: "text-blue-600 hover:text-blue-800" %>
+              <span class="text-sm text-gray-500">(<%= task.state %>)</span>
+            </li>
+          <% end %>
+        </ul>
+        <%= link_to "View all tasks", tasks_path, class: "mt-4 inline-block text-blue-500 hover:text-blue-700" %>
+      <% else %>
+        <p class="text-gray-600">No active tasks.</p>
+      <% end %>
+    </div>
+  </div>

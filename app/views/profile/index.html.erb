@@ -1,79 +1,12 @@
 
 
 <div class="container mx-auto mt-8">
-  <div class="w-full">
-    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col gap-4">    
-    <h1 class="font-bold text-4xl font-serif">Welcome to Ancient</h1>
-    <span class="italic text-gray-500 text-xl">This app is a simple task and story manager.</span>
-    <hr/>
+  <%= render partial: 'welcome' %>
+  <%= render partial: 'history' %>
+  <%= render partial: 'demo' %>
+  <%= render partial: 'tasks' %>
+  <%= render partial: 'stories' %>
 
-    <p>
-    <em>Have you ever looked at history and thought - yea that makes sense - then you are in the <b>wrong</b> place :o]</em>
-    </p>
-    <p>
-    <span class="italic text-gray-500"> Created by </span><span class="font-bold">Paul Vudmaska</span>
-    </div>
-  </div>
 
-  <div class="w-full">  
-    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-    
-      <h2 class="text-2xl font-bold mb-4">This is a demo app written in Ruby on Rails <span style="writing-mode: vertical-rl;
-text-orientation: sideways">8</span></h2>
-      <p>
-      The Todo app uses turbo frames and stimulus. <%= link_to "Check it out.", "https://github.com/voodoo/rails-fly-launchy/blob/main/app/views/todos/_todo.html.erb", class: "text-blue-600 hover:text-blue-800 hover:underline", target: "_blank" %>
-      <ul class="list-disc pl-5">
-      <li>It is wide open and has no authentication </li>
-      <li>Tasks and stories use built in Rails 8 auth</li>
-      <li>Data will be wiped next deploy</li>
-      </ul>
-      </p>
-      <p>
-      Rails is a great framework. Period.
-      </p>
 
-      <p>
-      Please feel free to contact me at paul@vudmaska.com
-      </p>
-      </p>
-    </div>
-  </div>
-
-  <div class="w-full">
-    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-      <h2 class="text-2xl font-bold mb-4">Recent Tasks</h2>
-      <% if @user.tasks.active.any? %>
-        <ul class="list-disc pl-5">
-          <% @user.tasks.active.order(created_at: :desc).limit(5).each do |task| %>
-            <li class="mb-2">
-              <%= link_to task.title, task_path(task), class: "text-blue-600 hover:text-blue-800" %>
-              <span class="text-sm text-gray-500">(<%= task.state %>)</span>
-            </li>
-          <% end %>
-        </ul>
-        <%= link_to "View all tasks", tasks_path, class: "mt-4 inline-block text-blue-500 hover:text-blue-700" %>
-      <% else %>
-        <p class="text-gray-600">No active tasks.</p>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="w-full">
-    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-      <h2 class="text-2xl font-bold mb-4">Recent Stories</h2>
-      <% if @user.stories.any? %>
-        <ul class="list-disc pl-5">
-          <% @user.stories.order(created_at: :desc).limit(5).each do |story| %>
-            <li class="mb-2">
-              <%= link_to story.title, story_path(story), class: "text-blue-600 hover:text-blue-800" %>
-              <span class="text-sm text-gray-500">(<%= time_ago_in_words(story.created_at) %> ago)</span>
-            </li>
-          <% end %>
-        </ul>
-        <%= link_to "View all stories", stories_path, class: "mt-4 inline-block text-blue-500 hover:text-blue-700" %>
-      <% else %>
-        <p class="text-gray-600">No stories yet.</p>
-      <% end %>
-    </div>
-  </div>
 </div>
