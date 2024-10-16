@@ -1,6 +1,7 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: [:show, :edit, :update, :destroy, :toggle]
-  
+  skip_before_action :verify_authenticity_token#, if: :turbo_frame_request?
+
   allow_unauthenticated_access
   before_action :resume_session
 
@@ -60,7 +61,9 @@ class TodosController < ApplicationController
   end
 
   private
-
+  # def turbo_frame_request?
+  #   turbo_frame_request?
+  # end
   def set_todo
     @todo = Current.root_user.todos.find(params[:id])
   end
