@@ -1,8 +1,9 @@
 <div class="container mx-auto mt-8">
   <div class="flex justify-between items-center mb-4">
     <h1 class="text-3xl font-bold"><%=link_to "Tasks", tasks_path %></h1>
-    <% if @tasks.active.any? && action_name != "all" %>
-      <%= link_to "All", all_tasks_path, class: " py-3 px-5  text-blue-800 font-medium"  %>
+
+    <% if @tasks.complete.any? && action_name != "all" %>
+      <%= link_to "All", all_tasks_path, class: "py-3 px-5 text-blue-800 font-medium" %>
     <% end %>
     <% if Current.user %>
       <%= link_to ' New Task ', new_task_path, class: 'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded' %>
@@ -11,6 +12,10 @@
   
 
   <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <%= render partial: 'task', collection: @tasks %>
+    <% if action_name == "all" %>
+      <%= render partial: 'task', collection: @tasks.order(state: :desc) %>
+    <% else %>
+      <%= render partial: 'task', collection: @tasks.active.order(state: :desc) %>
+    <% end %>
   </div>
 </div>

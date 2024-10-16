@@ -7,12 +7,13 @@ class TasksController < ApplicationController
 
   def index
     # This is accounting for using root account items if not logged in
-    @tasks = Current.user ? Current.user.tasks.active.order(state: :asc) : Current.root_user.tasks.active.order(state: :asc)
+    @tasks = Current.user ? Current.user.tasks : Current.root_user.tasks
+    @tasks = @tasks#.active
   end
   
   def all
     # This is accounting for using root account items if not logged in
-    @tasks = Current.user ? Current.user.tasks.order(:state) : Current.root_user.tasks.order(:state)
+    @tasks = Current.user ? Current.user.tasks : Current.root_user.tasks
     render :index
   end
 
