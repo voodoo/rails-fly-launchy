@@ -8,3 +8,104 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOutDown {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(20px); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.animate-fade-out-down {
+  animation: fadeOutDown 0.5s ease-out forwards;
+}
+
+#chat-messages {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+#chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+#chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 3px;
+}
+
+[data-chat-target="messages"] {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.prose {
+  @apply text-gray-900;
+}
+
+.prose a {
+  @apply text-blue-600 hover:text-blue-800;
+}
+
+.prose strong {
+  @apply font-semibold;
+}
+
+.prose ol, .prose ul {
+  @apply pl-4;
+}
+
+.prose ol {
+  @apply list-decimal;
+}
+
+.prose ul {
+  @apply list-disc;
+}
+
+.prose pre {
+  @apply bg-gray-100 rounded p-2 my-2 overflow-x-auto;
+}
+
+.prose code {
+  @apply bg-gray-100 rounded px-1;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-gray-300 pl-4 italic;
+}
+
+@keyframes newMessage {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-new-message {
+  animation: newMessage 0.5s ease-out;
+}

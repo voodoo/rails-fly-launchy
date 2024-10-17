@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_13_232017) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_17_163011) do
+  create_table "messages", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.boolean "ai_generated", default: false
+    t.text "content"
+    t.string "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -73,6 +83,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_13_232017) do
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
+  add_foreign_key "messages", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "stories", "users"
   add_foreign_key "tasks", "users"

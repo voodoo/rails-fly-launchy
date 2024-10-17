@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :stories, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :todos, dependent: :destroy
+  has_many :messages, dependent: :destroy
   normalizes :email_address, with: -> e { e.strip.downcase }
   
 end

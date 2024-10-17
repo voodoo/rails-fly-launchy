@@ -65,3 +65,9 @@ group :test do
 end
 
 gem "dockerfile-rails", ">= 1.6", :group => :development
+
+# Add these lines to your Gemfile
+gem 'httparty'
+gem 'dotenv-rails'
+
+gem 'redcarpet'

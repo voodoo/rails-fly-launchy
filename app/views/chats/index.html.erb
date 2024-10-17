@@ -1,0 +1,20 @@
+<% content_for :header do %>
+  Chat
+<% end %>
+
+<div class="flex flex-col h-full">
+  <div data-controller="chat" class="flex-1 flex flex-col overflow-hidden">
+    <div id="messages" data-chat-target="messages" class="flex-1 overflow-y-auto px-4 py-6">
+      <%= render partial: 'message', collection: @messages %>
+    </div>
+
+    <div class="border-t bg-white px-4 py-4">
+      <%= form_with(url: chats_path, method: :post, data: { action: "submit->chat#submitForm" }, class: "flex items-center") do |form| %>
+        <%= form.text_area :content, rows: 1, class: "flex-1 border rounded-l-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500", placeholder: "Type your message...", data: { chat_target: "input" } %>
+        <%= form.submit "Send", class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-lg" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= turbo_stream_from "chat" %>
